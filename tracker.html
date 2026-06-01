@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Tracker - Daily Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="mosque-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C10.34 2 9 3.34 9 5C9 5.71 9.24 6.36 9.64 6.88C7.23 7.74 5.22 9.53 4.22 12H3V22H21V12H19.78C18.78 9.53 16.77 7.74 14.36 6.88C14.76 6.36 15 5.71 15 5C15 3.34 13.66 2 12 2M12 4C12.55 2 13.5 4 13.5 5C13.5 5.55 13.05 6 12.5 6C11.95 6 11.5 5.55 11.5 5C11.5 4 11.45 2 12 4M6 14H8V20H6V14M10 14H14V20H10V14M16 14H18V20H16V14Z"/>
+                    </svg>
+                    <h1>Prayer Tracker</h1>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-icon" title="Back to Main">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="auth-bar" id="authBar">
+                <!-- Auth buttons will be rendered here -->
+            </div>
+        </header>
+        <main class="main-content">
+            <section class="masjid-selector-section" style="margin-bottom:32px;">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-label">Select Masjid</h2>
+                        <div class="section-hint">Choose your masjid to view Iqamah and Jumuah times</div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:center;margin-top:12px;">
+                    <select id="masjidSelect" class="custom-select" style="min-width:220px;">
+                        <option value="masjid_al_islam">Masjid Al-Islam</option>
+                        <option value="icsd">Islamic Center of South Dallas</option>
+                        <option value="masjid_al_quran">Masjid Al Quran</option>
+                        <option value="al_razzaq">Al Razzaq Islamic Centre</option>
+                        <option value="collin_county">Islamic Association of Collin County</option>
+                        <option value="epic">East Plano Islamic Center (EPIC)</option>
+                        <option value="frisco">Islamic Center of Frisco</option>
+                        <option value="allen">Islamic Association of Allen</option>
+                        <option value="baitul_ikram">Masjid Baitul Ikram</option>
+                        <option value="mckinney">McKinney Masjid</option>
+                        <option value="iant">Islamic Association of North Texas (IANT)</option>
+                        <option value="mas_dallas">MAS Islamic Center of Dallas</option>
+                        <option value="vric">Valley Ranch Islamic Center (VRIC)</option>
+                        <option value="carrollton">Madinah Masjid of Carrollton</option>
+                        <option value="mic">Mesquite Islamic Center (MIC)</option>
+                        <option value="desoto">Islamic Association of DeSoto</option>
+                        <option value="house_of_peace">DeSoto House of Peace</option>
+                        <option value="icr">Islamic Center of Rowlett (ICR)</option>
+                        <option value="iatc">Islamic Association of Tarrant County</option>
+                        <option value="fort_worth">Islamic Association of Fort Worth</option>
+                        <option value="keller">Keller Islamic Center (KIC)</option>
+                        <option value="bayt_alkarim">Bayt Al-Karim Islamic Center</option>
+                        <option value="alhedayah">Al-Hedayah Academy & Masjid</option>
+                        <option value="imam_ali">Imam Ali Islamic Center</option>
+                    </select>
+                </div>
+            </section>
+            <section class="iqamah-section" style="margin-bottom:32px;">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-label" id="iqamahTitle">Iqamah Times</h2>
+                        <div class="section-hint" id="iqamahHint">Listed Iqamah Times</div>
+                    </div>
+                </div>
+                <div class="iqamah-table" id="iqamahTable" style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:12px;"></div>
+            </section>
+            <section class="jumuah-section" style="margin-bottom:32px;">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-label" id="jumuahTitle">Jumuah Prayers</h2>
+                        <div class="section-hint" id="jumuahHint">See Jumuah times and details</div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:12px;" id="jumuahLink"></div>
+            </section>
+            <section class="tracker-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-label">Daily Prayer Checklist</h2>
+                        <div class="section-hint">Track your daily prayers and mark attendance at the masjid.</div>
+                    </div>
+                    <div class="user-info" id="userInfo"></div>
+                </div>
+                <div id="prayerTracker"></div>
+            </section>
+            <section class="stats-section" style="margin-bottom:32px;">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-label">Stats & Insights (Coming Soon)</h2>
+                        <div class="section-hint">Ideas for your prayer journey</div>
+                    </div>
+                </div>
+                <ul style="max-width:500px;margin:16px auto 0;color:var(--text-secondary);font-size:1rem;line-height:1.7;">
+                    <li>Prayer streak: How many days in a row you completed all prayers</li>
+                    <li>Masjid attendance rate: % of prayers performed in the masjid</li>
+                    <li>Prayer completion rate: % of prayers completed overall</li>
+                    <li>Best week/month: Your highest performing periods</li>
+                    <li>Jumuah attendance log</li>
+                    <li>Custom reminders and encouragements</li>
+                </ul>
+            </section>
+        </main>
+        <footer class="footer">
+            <div>Prayer Tracker &copy; 2026</div>
+            <div class="footer-note">Stay consistent and track your progress.</div>
+        </footer>
+    </div>
+        <script src="tracker.js"></script>
+        <script>
+        const masjidSchedules = {
+            masjid_al_islam: { iqamah: { fajr: '05:10', dhuhr: '13:45', asr: '17:15', maghrib: '20:38', isha: '22:15' }, jumuah: ['13:45'] },
+            al_razzaq: { iqamah: { dhuhr: '14:00', asr: '17:15', maghrib: '20:30' }, jumuah: [] },
+            collin_county: { iqamah: { fajr: '05:30', dhuhr: '14:00', asr: '18:30', maghrib: '20:40', isha: '22:00' }, jumuah: ['13:45', '15:00'] },
+            epic: { iqamah: { fajr: '05:30', dhuhr: '14:00', asr: '18:30', maghrib: '20:40', isha: '22:00' }, jumuah: ['13:45', '15:15'] },
+            allen: { iqamah: { fajr: '05:30', dhuhr: '14:00', asr: '18:30', maghrib: '20:30', isha: '22:00' }, jumuah: ['14:00', '15:30'] },
+            mckinney: { iqamah: { fajr: '05:10', dhuhr: '14:00', asr: '17:15', maghrib: '20:38', isha: '21:55' }, jumuah: ['13:45', '14:45', '15:45'] },
+            mas_dallas: { iqamah: { fajr: '05:10', dhuhr: '13:45', asr: '17:15', maghrib: '20:34', isha: '21:55' }, jumuah: ['13:30'] },
+            vric: { iqamah: { fajr: '05:30', dhuhr: '13:45', asr: '17:30', maghrib: '20:34', isha: '22:00' }, jumuah: ['13:45', '15:00'] },
+            carrollton: { iqamah: { fajr: '05:45', dhuhr: '13:45', asr: '18:45', maghrib: '20:35', isha: '22:15' }, jumuah: ['14:00'] },
+            mic: { iqamah: { fajr: '05:45', dhuhr: '13:45', asr: '17:16', maghrib: '20:39', isha: '21:54' }, jumuah: ['13:30', '14:30'] },
+            icr: { iqamah: { fajr: '05:30', dhuhr: '13:45', asr: '18:15', maghrib: '20:40', isha: '22:00' }, jumuah: ['14:00'] },
+            iatc: { iqamah: { fajr: '05:45', dhuhr: '14:00', asr: '17:30', maghrib: '20:39', isha: '22:00' }, jumuah: ['13:25'] },
+            alhedayah: { iqamah: { fajr: '05:30', dhuhr: '14:00', asr: '17:30', maghrib: '20:39', isha: '22:00' }, jumuah: ['13:25', '14:25'] }
+        };
+
+        function formatScheduleTime(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            const period = hours >= 12 ? 'PM' : 'AM';
+            return `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${period}`;
+        }
+
+        function renderMasjidSections() {
+            const select = document.getElementById('masjidSelect');
+            const masjid = select.value;
+            const data = masjidSchedules[masjid] || { iqamah: {}, jumuah: [] };
+            // Iqamah
+            const iqamahTable = document.getElementById('iqamahTable');
+            iqamahTable.innerHTML = '';
+            const iqamahEntries = Object.entries(data.iqamah);
+            if (iqamahEntries.length === 0) {
+                const div = document.createElement('div');
+                div.className = 'iqamah-card';
+                div.textContent = 'Iqamah times not verified yet';
+                iqamahTable.appendChild(div);
+            }
+            iqamahEntries.forEach(([name, time]) => {
+                const div = document.createElement('div');
+                div.className = 'iqamah-card';
+                div.innerHTML = `<strong>${name.charAt(0).toUpperCase() + name.slice(1)}:</strong> ${formatScheduleTime(time)}`;
+                iqamahTable.appendChild(div);
+            });
+            // Jumuah
+            const jumuahLink = document.getElementById('jumuahLink');
+            jumuahLink.innerHTML = `<a href="jumuah.html?masjid=${masjid}" class="btn btn-primary">View Jumuah Times</a>`;
+            document.getElementById('jumuahHint').textContent = data.jumuah.length
+                ? `Jumuah: ${data.jumuah.map(formatScheduleTime).join(' / ')}`
+                : 'Jumuah times not verified yet';
+            // Titles
+            document.getElementById('iqamahTitle').textContent = `${select.options[select.selectedIndex].text} Iqamah Times`;
+            document.getElementById('iqamahHint').textContent = `Listed Iqamah Times for ${select.options[select.selectedIndex].text}`;
+            document.getElementById('jumuahTitle').textContent = `${select.options[select.selectedIndex].text} Jumuah Prayers`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('masjidSelect');
+            select.addEventListener('change', renderMasjidSections);
+            renderMasjidSections();
+        });
+        </script>
+</body>
+</html>

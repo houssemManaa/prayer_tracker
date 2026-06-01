@@ -1,0 +1,21 @@
+{
+  "name": "masjid-iqamah-scraper",
+  "version": "1.0.0",
+  "description": "Web scraper to extract iqamah times from Dallas/Fort Worth masjid websites",
+  "main": "scraper.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scraper.js",
+    "test": "node scraper.js --test"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "pdf-parse": "^1.1.1",
+    "tesseract.js": "^4.1.1"
+  },
+  "keywords": ["masjid", "prayer", "iqamah", "scraper"],
+  "author": "",
+  "license": "MIT"
+}
